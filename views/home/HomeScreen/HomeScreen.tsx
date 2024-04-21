@@ -4,20 +4,37 @@ import {connect} from 'react-redux';
 import {getDessertsAction} from '../../../redux/dessert/slice';
 import {StateType} from '../../../redux/root-reducer';
 import CardDessert from '../../../components';
+import {s} from './HomeStyle';
 
+type ItemData = {
+  idMeal: number;
+  strMealThumb: string;
+  strMeal: string;
+};
 class HomeScreen extends Component<any> {
   componentDidMount(): void {
     const {getDessertsAction} = this.props;
     getDessertsAction();
   }
+
+  renderItem = ({item}: {item: ItemData}) => {
+    return (
+      <View style={s.containerCard}>
+        <CardDessert
+          idMeal={item.idMeal}
+          uri={item.strMealThumb}
+          title={item.strMeal}
+        />
+      </View>
+    );
+  };
+
   render() {
     return (
-      <View style={{flex: 1, backgroundColor: 'pink'}}>
+      <View style={{flex: 1}}>
         <FlatList
           data={this.props.desserts?.meals}
-          renderItem={({item, index, separators}) => {
-            return <CardDessert idMeal={item.idMeal} uri={item.strMealThumb} />;
-          }}
+          renderItem={this.renderItem}
         />
       </View>
     );

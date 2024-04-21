@@ -4,12 +4,8 @@ import {connect} from 'react-redux';
 import {getDessertByIdAction} from '../../../redux/dessert/slice';
 import {StateType} from '../../../redux/root-reducer';
 
-class DessertDetailScreen extends Component<any> {
-  componentDidMount(): void {
-    const {getDessertByIdAction, route} = this.props;
-    const {idMeal} = route.params;
-    getDessertByIdAction({id: idMeal});
-  }
+class OrdersScreen extends Component<any> {
+  componentDidMount(): void {}
   render() {
     const {dessert} = this.props;
     return (
@@ -29,5 +25,5 @@ const mapDispatchToProps = {
 const connectDessertDetailScreen = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(DessertDetailScreen);
-export {connectDessertDetailScreen as DessertDetailScreen};
+)(OrdersScreen);
+export {connectDessertDetailScreen as OrdersScreen};
