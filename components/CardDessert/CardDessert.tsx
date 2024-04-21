@@ -6,6 +6,7 @@ import {
   ParamListBase,
   NavigationProp,
 } from '@react-navigation/native';
+import ButtonPrimary from '../ButtonPrimary';
 
 type CardDessertProps = {
   uri: string;
@@ -32,7 +33,14 @@ export default function CardDessert({idMeal, uri, title}: CardDessertProps) {
       <Text style={s.titleCard}>{title}</Text>
       <Text style={s.priceCard}>${idMeal}</Text>
       <View style={s.fakeButton}>
-        <Text style={s.textButton}>Ver</Text>
+        <ButtonPrimary
+          label="ver"
+          onPress={() => {
+            navigation.navigate('DessertDetail', {
+              idMeal,
+            });
+          }}
+        />
       </View>
     </TouchableOpacity>
   );

@@ -17,8 +17,16 @@ function HomeStack() {
       screenOptions={{
         gestureEnabled: true,
       }}>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="DessertDetail" component={DessertDetailScreen} />
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{title: 'Postres'}}
+      />
+      <Stack.Screen
+        name="DessertDetail"
+        component={DessertDetailScreen}
+        options={{title: 'Detalle'}}
+      />
     </Stack.Navigator>
   );
 }
@@ -29,19 +37,18 @@ function RootStack() {
       screenOptions={{
         headerShown: false,
       }}>
-      <Tab.Screen name="HomeTab" component={HomeStack} />
-      <Tab.Screen name="Orders" component={OrdersScreen} />
+      <Tab.Screen
+        name="HomeTab"
+        component={HomeStack}
+        options={{title: 'Home'}}
+      />
+      <Tab.Screen
+        name="Orders"
+        component={OrdersScreen}
+        options={{title: 'Pedidos'}}
+      />
     </Tab.Navigator>
   );
 }
-
-// function RootStack() {
-//   return (
-//     <Stack.Navigator>
-//       <Stack.Screen name="Home" component={HomeScreen} />
-//       <Stack.Screen name="DessertDetail" component={DessertDetailScreen} />
-//     </Stack.Navigator>
-//   );
-// }
 
 export {RootStack};

@@ -1,7 +1,10 @@
 import {StyleSheet} from 'react-native';
 export const s = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   containerCard: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 18,
     paddingVertical: 12,
     shadowColor: '#000000',
     shadowOffset: {

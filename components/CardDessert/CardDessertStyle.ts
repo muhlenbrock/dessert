@@ -27,12 +27,6 @@ export const s = StyleSheet.create({
   },
   fakeButton: {
     marginTop: 20,
-    borderRadius: 30,
-    backgroundColor: '#ffcc62',
-    width: 150,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   textButton: {
     fontSize: 16,

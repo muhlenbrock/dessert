@@ -31,7 +31,7 @@ class HomeScreen extends Component<any> {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={s.container}>
         <FlatList
           data={this.props.desserts?.meals}
           renderItem={this.renderItem}
