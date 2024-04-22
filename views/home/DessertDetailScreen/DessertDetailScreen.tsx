@@ -1,4 +1,4 @@
-import {Text, View, Image, ScrollView, TouchableOpacity} from 'react-native';
+import {Text, View, Image, ScrollView} from 'react-native';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getDessertByIdAction} from '../../../redux/dessert/slice';
@@ -7,12 +7,26 @@ import YoutubePlayer from 'react-native-youtube-iframe';
 import {s} from './DessertDetailStyle';
 import LoaderKit from 'react-native-loader-kit';
 import {ButtonPrimary} from '../../../components';
+import {ModalDessert} from '../../../components';
 
-class DessertDetailScreen extends Component<any> {
-  constructor(props) {
+import {getIngredients, getMeasures} from '../../../utils';
+type State = {
+  showYoutubePlayer: boolean;
+  isVisibleModal: boolean;
+  stepsForm: number;
+  ingredients: string[];
+  measures: string[];
+};
+
+class DessertDetailScreen extends Component<any, State> {
+  constructor(props: {}) {
     super(props);
     this.state = {
       showYoutubePlayer: false,
+      isVisibleModal: false,
+      stepsForm: 0,
+      ingredients: [],
+      measures: [],
     };
   }
   componentDidMount(): void {
@@ -20,9 +34,11 @@ class DessertDetailScreen extends Component<any> {
     const {idMeal} = route.params;
     getDessertByIdAction({id: idMeal});
   }
+
   render() {
     const {dessert, isLoading} = this.props;
-    const {showYoutubePlayer} = this.state;
+    const {showYoutubePlayer, isVisibleModal, ingredients, measures} =
+      this.state;
     return (
       <>
         <ScrollView style={s.containerScroll}>
@@ -37,14 +53,16 @@ class DessertDetailScreen extends Component<any> {
           )}
           {!isLoading && (
             <View style={s.container}>
-              <View style={s.imageContainer}>
-                <Image
-                  style={s.logo}
-                  source={{
-                    uri: dessert?.meals[0]?.strMealThumb,
-                  }}
-                />
-              </View>
+              {dessert?.meals[0]?.strMealThumb && (
+                <View style={s.imageContainer}>
+                  <Image
+                    style={s.logo}
+                    source={{
+                      uri: dessert?.meals[0]?.strMealThumb,
+                    }}
+                  />
+                </View>
+              )}
               <View style={s.infoContainer}>
                 <Text style={s.textCategory}>
                   {dessert?.meals[0]?.strCategory}
@@ -76,9 +94,34 @@ class DessertDetailScreen extends Component<any> {
             <Text style={s.textPrice}>${dessert?.meals[0]?.idMeal}</Text>
           </View>
           <View>
-            <ButtonPrimary label={'Comprar'} onPress={() => {}} />
+            <ButtonPrimary
+              label={'Buy'}
+              onPress={() => {
+                this.setState({
+                  isVisibleModal: true,
+                  ingredients: getIngredients(dessert?.meals[0]),
+                  measures: getMeasures(dessert?.meals[0]),
+                });
+              }}
+            />
           </View>
         </View>
+        <ModalDessert
+          isVisibleModal={isVisibleModal}
+          dessert={dessert}
+          ingredients={ingredients}
+          measures={measures}
+          onPressConfirm={() => {
+            this.setState({
+              isVisibleModal: false,
+            });
+          }}
+          onPressClose={() => {
+            this.setState({
+              isVisibleModal: false,
+            });
+          }}
+        />
       </>
     );
   }

@@ -5,11 +5,18 @@ import {s} from './ButtonPrimaryStyle';
 type ButtonPrimaryProps = {
   label: string;
   onPress: () => void;
+  disabled?: boolean;
 };
 
-export default function ButtonPrimary({label, onPress}: ButtonPrimaryProps) {
+export default function ButtonPrimary({
+  label,
+  onPress,
+  disabled,
+}: ButtonPrimaryProps) {
   return (
-    <TouchableOpacity onPress={onPress} style={s.button}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={disabled ? s.buttonDisabled : s.button}>
       <Text style={s.textButton}>{label}</Text>
     </TouchableOpacity>
   );
