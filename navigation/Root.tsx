@@ -20,12 +20,12 @@ function HomeStack() {
       <Stack.Screen
         name="Home"
         component={HomeScreen}
-        options={{title: 'Postres'}}
+        options={{title: 'Desserts'}}
       />
       <Stack.Screen
         name="DessertDetail"
         component={DessertDetailScreen}
-        options={{title: 'Detalle'}}
+        options={{title: 'Details'}}
       />
     </Stack.Navigator>
   );
@@ -45,7 +45,7 @@ function RootStack() {
       <Tab.Screen
         name="Orders"
         component={OrdersScreen}
-        options={{title: 'Pedidos'}}
+        options={{title: 'Orders'}}
       />
     </Tab.Navigator>
   );

@@ -34,7 +34,7 @@ export default function CardDessert({idMeal, uri, title}: CardDessertProps) {
       <Text style={s.priceCard}>${idMeal}</Text>
       <View style={s.fakeButton}>
         <ButtonPrimary
-          label="ver"
+          label="Show"
           onPress={() => {
             navigation.navigate('DessertDetail', {
               idMeal,

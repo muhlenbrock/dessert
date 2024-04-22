@@ -9,8 +9,8 @@ class OrdersScreen extends Component<any> {
   render() {
     const {dessert} = this.props;
     return (
-      <View style={{flex: 1, backgroundColor: 'white'}}>
-        <Text>{dessert?.meals[0]?.strMeal}</Text>
+      <View style={{flex: 1}}>
+        <Text>Orders</Text>
       </View>
     );
   }
