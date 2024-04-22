@@ -3,9 +3,12 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getDessertByIdAction} from '../../../redux/dessert/slice';
 import {StateType} from '../../../redux/root-reducer';
+import {getDataObj} from '../../../utils';
 
 class OrdersScreen extends Component<any> {
-  componentDidMount(): void {}
+  async componentDidMount(): void {
+    console.log(await getDataObj());
+  }
   render() {
     const {dessert} = this.props;
     return (

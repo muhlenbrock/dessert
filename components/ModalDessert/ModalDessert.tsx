@@ -10,6 +10,7 @@ import React, {useState} from 'react';
 import {s} from './ModalDessertStyle';
 import ButtonPrimary from '../ButtonPrimary';
 import Modal from 'react-native-modal';
+import {storeDataObj} from '../../utils';
 
 type ModalDessertProps = {
   isVisibleModal: boolean;
@@ -152,6 +153,15 @@ function ModalDessert({
                       onChangeAddress('');
                       onPressConfirm();
                     }
+                    const order = {
+                      name,
+                      lastName,
+                      address,
+                      ingredients,
+                      measures,
+                      id: dessert?.meals[0]?.idMeal,
+                    };
+                    storeDataObj(order);
                   }}
                   disabled={isDisabledForm(name, lastName, address)}
                 />
